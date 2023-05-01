@@ -1,5 +1,5 @@
 ---
-- name: "Install keepalived"
+- name: "Install Keepalived"
   become: "true"
   apt:
     name: "keepalived"

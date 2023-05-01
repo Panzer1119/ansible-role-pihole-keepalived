@@ -1,5 +1,5 @@
 ---
-- name: "Install keepalived"
+- name: "Install Keepalived"
   include_tasks:
     file: "install-keepalived.yml"
   when: "install_keepalived"
