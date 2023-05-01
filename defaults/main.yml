@@ -1,2 +1,2 @@
 ---
-# defaults file for pihole-keepalived
+install_keepalived: true
