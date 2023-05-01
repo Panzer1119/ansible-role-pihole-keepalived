@@ -1,0 +1,6 @@
+---
+- name: "Install keepalived"
+  become: "true"
+  apt:
+    name: "keepalived"
+    state: "present"
