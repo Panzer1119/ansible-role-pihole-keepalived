@@ -1,2 +1,3 @@
 ---
 install_keepalived: true
+copy_check_script: true
