@@ -1,0 +1,6 @@
+---
+- name: "Enable Keepalived service"
+  become: true
+  systemd:
+    name: "keepalived"
+    enabled: yes

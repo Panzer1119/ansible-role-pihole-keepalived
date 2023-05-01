@@ -2,6 +2,7 @@
 install_keepalived: true
 copy_check_script: true
 create_keepalived_config: true
+enable_keepalived_service: true
 
 # Keepalived config
 keepalived_script_path: "/usr/local/bin/pihole-ftl-check.sh"

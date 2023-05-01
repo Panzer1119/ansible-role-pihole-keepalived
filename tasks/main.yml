@@ -11,3 +11,7 @@
   include_tasks:
     file: "create-keepalived-config.yml"
   when: "create_keepalived_config"
+- name: "Enable Keepalived service"
+  include_tasks:
+    file: "enable-keepalived-service.yml"
+  when: "enable_keepalived_service"
