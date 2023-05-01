@@ -7,3 +7,7 @@
   include_tasks:
     file: "copy-check-script.yml"
   when: "copy_check_script"
+- name: "Create Keepalived config"
+  include_tasks:
+    file: "create-keepalived-config.yml"
+  when: "create_keepalived_config"
