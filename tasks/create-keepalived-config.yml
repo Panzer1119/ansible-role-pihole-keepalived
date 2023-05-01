@@ -15,11 +15,11 @@
 
 - name: "Set Keepalived unicast_src_ip"
   set_fact:
-    keepalived_unicast_src_ip: "{{ ansible_facts['ansible_default_ipv4']['address'] }}"
+    keepalived_unicast_src_ip: "{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}"
 
 - name: "Set Keepalived unicast_peers"
   set_fact:
-    keepalived_unicast_peers: "{{ groups['pihole_servers'] | map('extract', hostvars, ['ansible_default_ipv4', 'address']) | difference([ansible_facts['ansible_default_ipv4']['address']]) }}"
+    keepalived_unicast_peers: "{{ groups['master'] + groups['backup'] | map('extract', hostvars, ['ansible_default_ipv4', 'address']) | difference([hostvars[inventory_hostname]['ansible_default_ipv4']['address']]) }}"
 
 - name: "Generate Keepalived hex secret"
   community.general.random_string:
