@@ -21,16 +21,6 @@
   set_fact:
     keepalived_unicast_peers: "{{ groups['master'] + groups['backup'] | map('extract', hostvars, ['ansible_default_ipv4', 'address']) | difference([hostvars[inventory_hostname]['ansible_default_ipv4']['address']]) }}"
 
-- name: "Generate Keepalived hex secret"
-  community.general.random_string:
-    length: 16
-    charset: '0123456789abcdef'
-  register: "secret_result"
-
-- name: "Set Keepalived hex secret"
-  set_fact:
-    keepalived_auth_password: "{{ secret_result.random_string }}"
-
 - name: "Create Keepalived configuration file"
   template:
     src: "keepalived.conf.j2"
