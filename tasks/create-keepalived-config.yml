@@ -15,11 +15,20 @@
 
 - name: "Set Keepalived unicast_src_ip"
   set_fact:
-    keepalived_unicast_src_ip: "{{ hostvars[inventory_hostname]['ansible_default_ipv4']['address'] }}"
+    keepalived_unicast_src_ip: "{{ hostvars[inventory_hostname]['ansible_host'] }}"
 
-- name: "Set Keepalived unicast_peers"
+- name: "Extract IPv4 addresses from master and backup groups"
   set_fact:
-    keepalived_unicast_peers: "{{ groups['master'] + groups['backup'] | map('extract', hostvars, ['ansible_default_ipv4', 'address']) | difference([hostvars[inventory_hostname]['ansible_default_ipv4']['address']]) }}"
+    keepalived_unicast_peers_master: "{{ groups['master'] | map('extract', hostvars, ['ansible_host']) | select('string') | list }}"
+    keepalived_unicast_peers_backup: "{{ groups['backup'] | map('extract', hostvars, ['ansible_host']) | select('string') | list }}"
+
+- name: "Concatenate unicast_peers_master and unicast_peers_backup"
+  set_fact:
+    keepalived_unicast_peers: "{{ keepalived_unicast_peers_master + keepalived_unicast_peers_backup }}"
+
+- name: "Remove current host from unicast_peers"
+  set_fact:
+    keepalived_unicast_peers: "{{ keepalived_unicast_peers | difference([keepalived_unicast_src_ip]) }}"
 
 - name: "Create Keepalived configuration file"
   template:
