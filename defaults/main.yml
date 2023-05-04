@@ -7,7 +7,7 @@ enable_keepalived_service: true
 # Keepalived config
 keepalived_script_service: "pihole-FTL"
 keepalived_script_interval: 1
-keepalived_script_weight: -10
+keepalived_script_weight: -100
 keepalived_vrrp_instance_name: "PIHOLE"
 keepalived_interface: "eth0"
 keepalived_virtual_router_id: 1
