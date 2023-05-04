@@ -3,10 +3,10 @@
   include_tasks:
     file: "install-keepalived.yml"
   when: "install_keepalived"
-- name: "Copy Check Script"
+- name: "Create Check Script"
   include_tasks:
-    file: "copy-check-script.yml"
-  when: "copy_check_script"
+    file: "create-check-script.yml"
+  when: "create_check_script"
 - name: "Create Keepalived config"
   include_tasks:
     file: "create-keepalived-config.yml"

@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if systemctl status {{ keepalived_script_service }}.service | grep -q "active (running)"; then
+  exit 0
+else
+  exit 1
+fi

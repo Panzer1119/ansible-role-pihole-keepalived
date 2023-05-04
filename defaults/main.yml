@@ -1,11 +1,11 @@
 ---
 install_keepalived: true
-copy_check_script: true
+create_check_script: true
 create_keepalived_config: true
 enable_keepalived_service: true
 
 # Keepalived config
-keepalived_script_path: "/usr/local/bin/pihole-ftl-check.sh"
+keepalived_script_service: "pihole-FTL"
 keepalived_script_interval: 1
 keepalived_script_weight: -10
 keepalived_vrrp_instance_name: "PIHOLE"

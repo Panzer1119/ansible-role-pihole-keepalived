@@ -8,8 +8,8 @@ global_defs {
   enable_script_security
 }
 
-vrrp_script chk_pihole {
-  script "{{ keepalived_script_path }}"
+vrrp_script chk_service {
+  script "/usr/local/bin/{{ keepalived_script_service | lower }}-check.sh"
   interval {{ keepalived_script_interval }}
   weight {{ keepalived_script_weight }}
 }
@@ -35,6 +35,6 @@ vrrp_instance {{ keepalived_vrrp_instance_name }} {
   }
 
   track_script {
-    chk_pihole
+    chk_service
   }
 }
